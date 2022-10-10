@@ -1,6 +1,6 @@
 settings = {
-   "ssid": "great interactive reef",
-   "password": "interactive",
-    "broker": "192.168.1.144",
-    "clientid": "team 1", #your team name
+   "ssid": "Interactive Environments minor",
+   "password": "ScienceCentre",
+    "broker": "192.168.1.2",
+    "clientid": "team_nitty", #your team name
 }
