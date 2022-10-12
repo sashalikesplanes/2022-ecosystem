@@ -10,7 +10,7 @@ import pwmio
 from adafruit_motor import servo
 
 
-
+# IGNORE
 class EyeLids:
     # Store current state of eye lid and draw them
     # Consists of 8 key frames
@@ -73,6 +73,7 @@ class EyeLids:
 
 class Creature:
 
+    # IGNORE
     def __init__(self):
         self.ecosystem = None
         # Setup joystick input axis
@@ -110,6 +111,12 @@ class Creature:
         if msg == 'stinky stinna':
             self.start_blink(color=(0, 255, 0))
 
+        if msg == 'blue bonanza':
+            self.start_blink(color=(0, 0, 255))
+
+        if msg == 'red rollercoaster':
+            self.start_blink(color=(255, 0, 0))
+
     def sense(self):
         if self.x_joystick.value > 65_000:
             return True
@@ -122,8 +129,7 @@ class Creature:
             self.last_blink_time = time.monotonic()
             self.eye_lids.next_frame()
             self.pixels.show()
-            print('end of start blink')
-        
+
 
     def draw_eye(self, file_name, current_color):
         # Load an image stored in a text file, as a list of pixels
@@ -156,6 +162,7 @@ class Creature:
     def joystick_to_angle(self, joystick_value):
         # Convert a value between 18k and 48k into a value between 0 and 180
         new_angle = (joystick_value - 18_000) / 166.67
+        new_angle = new_angle / 2 + 45
         return min(180, max(0, new_angle))
 
     # One iteration of the creatures main loop
@@ -165,7 +172,7 @@ class Creature:
         # If the button in pressed then send the message based on the slider value
         if self.sense():
             self.start_blink()
-                
+
 
         new_eye_image = self.get_eye_image(self.x_joystick.value, self.y_joystick.value)
         if new_eye_image != self.current_eye_image:

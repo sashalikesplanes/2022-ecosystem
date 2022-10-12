@@ -54,7 +54,7 @@ class MQTT():
         if loop_timer.expired():
             loop_timer.start()
             try:
-                self.mqtt_client.loop()
+                self.mqtt_client.loop(timeout=0.01)
             except (ValueError, RuntimeError) as e:
                 print("Failed to get data, retrying\n", e)
                 self.wifi.reset()
